@@ -22,11 +22,9 @@ import cn.zhouyafeng.itchat4j.utils.enums.parameters.BaseParaEnum;
  */
 public class Core {
 
-	private static Core instance;
+	private static volatile Core instance;
 
-	private Core() {
-
-	}
+	private Core() {}
 
 	public static Core getInstance() {
 		if (instance == null) {

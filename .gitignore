@@ -7,3 +7,5 @@
 *.iml
 
 /bin/
+src/test/**
+**/src/test/**
