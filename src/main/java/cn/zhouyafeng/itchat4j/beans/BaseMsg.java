@@ -2,6 +2,9 @@ package cn.zhouyafeng.itchat4j.beans;
 
 import java.io.Serializable;
 
+import cn.zhouyafeng.itchat4j.api.dto.AppInfo;
+import cn.zhouyafeng.itchat4j.api.dto.RecommendInfo;
+
 /**
  * 收到的微信消息
  * 

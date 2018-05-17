@@ -81,7 +81,7 @@ public class LoginServiceImpl implements ILoginService {
 			HttpEntity entity = httpClient.doGet(URLEnum.LOGIN_URL.getUrl(), params, true, null);
 
 			try {
-				String result = EntityUtils.toString(entity);
+				String result = EntityUtils.toString(entity);	
 				String status = checklogin(result);
 
 				if (ResultEnum.SUCCESS.getCode().equals(status)) {
