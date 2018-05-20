@@ -13,10 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
-import cn.zhouyafeng.itchat4j.core.Core;
+import cn.zhouyafeng.itchat4j.api.dto.Contact;
+import cn.zhouyafeng.itchat4j.api.dto.Member;
 import cn.zhouyafeng.itchat4j.utils.enums.StorageLoginInfoEnum;
 import cn.zhouyafeng.itchat4j.utils.enums.URLEnum;
 
@@ -61,9 +60,9 @@ public class WechatTools {
 	 * @return
 	 */
 	public static String getUserNameByNickName(String nickName) {
-		for (JSONObject o : core.getContactList()) {
-			if (o.getString("NickName").equals(nickName)) {
-				return o.getString("UserName");
+		for (Contact o : core.getContactList()) {
+			if (o.getNickName().equals(nickName)) {
+				return o.getUserName();
 			}
 		}
 		return null;
@@ -78,8 +77,8 @@ public class WechatTools {
 	 */
 	public static List<String> getContactNickNameList() {
 		List<String> contactNickNameList = new ArrayList<String>();
-		for (JSONObject o : core.getContactList()) {
-			contactNickNameList.add(o.getString("NickName"));
+		for (Contact o : core.getContactList()) {
+			contactNickNameList.add(o.getNickName());
 		}
 		return contactNickNameList;
 	}
@@ -90,7 +89,7 @@ public class WechatTools {
 	 * @date 2017年6月26日 下午9:45:39
 	 * @return
 	 */
-	public static List<JSONObject> getContactList() {
+	public static List<Contact> getContactList() {
 		return core.getContactList();
 	}
 
@@ -101,7 +100,7 @@ public class WechatTools {
 	 * @date 2017年5月5日 下午9:55:21
 	 * @return
 	 */
-	public static List<JSONObject> getGroupList() {
+	public static List<Contact> getGroupList() {
 		return core.getGroupList();
 	}
 
@@ -132,7 +131,7 @@ public class WechatTools {
 	 * @param groupId
 	 * @return
 	 */
-	public static JSONArray getMemberListByGroupId(String groupId) {
+	public static List<Member> getMemberListByGroupId(String groupId) {
 		return core.getGroupMemeberMap().get(groupId);
 	}
 
@@ -165,9 +164,9 @@ public class WechatTools {
 	}
 
 	public static void setUserInfo() {
-		for (JSONObject o : core.getContactList()) {
-			core.getUserInfoMap().put(o.getString("NickName"), o);
-			core.getUserInfoMap().put(o.getString("UserName"), o);
+		for (Contact o : core.getContactList()) {
+			core.getUserInfoMap().put(o.getNickName(), o);
+			core.getUserInfoMap().put(o.getUserName(), o);
 		}
 	}
 
@@ -186,7 +185,7 @@ public class WechatTools {
 		Map<String, Object> msgMap_BaseRequest = new HashMap<String, Object>();
 		msgMap.put("CmdId", 2);
 		msgMap.put("RemarkName", remName);
-		msgMap.put("UserName", core.getUserInfoMap().get(nickName).get("UserName"));
+		msgMap.put("UserName", core.getUserInfoMap().get(nickName).getUserName());
 		msgMap_BaseRequest.put("Uin", core.getLoginInfo().get(StorageLoginInfoEnum.wxuin.getKey()));
 		msgMap_BaseRequest.put("Sid", core.getLoginInfo().get(StorageLoginInfoEnum.wxsid.getKey()));
 		msgMap_BaseRequest.put("Skey", core.getLoginInfo().get(StorageLoginInfoEnum.skey.getKey()));
@@ -195,8 +194,9 @@ public class WechatTools {
 		try {
 			String paramStr = JSON.toJSONString(msgMap);
 			HttpEntity entity = core.getMyHttpClient().doPost(url, paramStr);
-			// String result = EntityUtils.toString(entity, Consts.UTF_8);
-			LOG.info("修改备注" + remName);
+			 String result = EntityUtils.toString(entity, Consts.UTF_8);
+			 
+			LOG.info("修改备注" + remName + ", result= " + result);
 		} catch (Exception e) {
 			LOG.error("remarkNameByUserName", e);
 		}

@@ -3,7 +3,7 @@ package cn.zhouyafeng.itchat4j.thread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cn.zhouyafeng.itchat4j.core.Core;
+import cn.zhouyafeng.itchat4j.api.Core;
 import cn.zhouyafeng.itchat4j.utils.SleepUtils;
 
 /**

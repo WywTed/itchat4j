@@ -9,5 +9,5 @@ import lombok.Setter;
 public class WebwxgetContactResponse  extends BaseResponse{
 	private Integer MemberCount;
 	private List<Contact> MemberList;
-	private Integer Seq;
+	private Long Seq;
 }

@@ -1,9 +1,5 @@
 package cn.zhouyafeng.itchat4j.utils.enums;
 
-/**
- * URL
- * Created by xiaoxiaomo on 2017/5/6.
- */
 public enum URLEnum {
 
 
@@ -45,5 +41,9 @@ public enum URLEnum {
 
     public String getUrl() {
         return url;
+    }
+    
+    public String getMsg() {
+    	return msg;
     }
 }

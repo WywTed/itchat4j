@@ -26,7 +26,6 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.zhouyafeng.itchat4j.api.dto.RecommendInfo;
 import cn.zhouyafeng.itchat4j.beans.BaseMsg;
-import cn.zhouyafeng.itchat4j.core.Core;
 import cn.zhouyafeng.itchat4j.utils.Config;
 import cn.zhouyafeng.itchat4j.utils.MyHttpClient;
 import cn.zhouyafeng.itchat4j.utils.enums.StorageLoginInfoEnum;
@@ -244,7 +243,7 @@ public class MessageTools {
 		Map<String, Object> msgMap = new HashMap<String, Object>();
 		msgMap.put("Type", 3);
 		msgMap.put("MediaId", mediaId);
-		msgMap.put("FromUserName", core.getUserSelf().getString("UserName"));
+		msgMap.put("FromUserName", core.getUserSelf().getUserName());
 		msgMap.put("ToUserName", userId);
 		String clientMsgId = String.valueOf(new Date().getTime())
 				+ String.valueOf(new Random().nextLong()).substring(1, 5);
@@ -333,7 +332,7 @@ public class MessageTools {
 		Map<String, Object> msgMap = new HashMap<String, Object>();
 		msgMap.put("Type", data.get("type"));
 		msgMap.put("Content", content);
-		msgMap.put("FromUserName", core.getUserSelf().getString("UserName"));
+		msgMap.put("FromUserName", core.getUserSelf().getUserName());
 		msgMap.put("ToUserName", userId);
 		msgMap.put("LocalID", clientMsgId);
 		msgMap.put("ClientMsgId", clientMsgId);
