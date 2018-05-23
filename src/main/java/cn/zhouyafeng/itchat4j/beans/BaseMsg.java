@@ -32,6 +32,15 @@ public class BaseMsg implements Serializable {
 	private String Ticket;
 	/** 推荐消息报文 **/
 	private RecommendInfo recommendInfo;
+	private String data;
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
 	private long createTime;
 	private String newMsgId;
 	/** 文本消息内容 **/
@@ -43,6 +52,16 @@ public class BaseMsg implements Serializable {
 	private String msgId;
 	private int statusNotifyCode;
 	private AppInfo appInfo;
+	private String appInfoJson;
+	
+	public String getAppInfoJson() {
+		return appInfoJson;
+	}
+
+	public void setAppInfoJson(String appInfoJson) {
+		this.appInfoJson = appInfoJson;
+	}
+
 	private int appMsgType;
 	private String Type;
 	private int playLength;

@@ -53,7 +53,7 @@ public class MessageTools {
 	 * @param msg
 	 * @param toUserName
 	 */
-	private static void sendMsg(String text, String toUserName) {
+	public static void sendMsg(String text, String toUserName) {
 		if (text == null) {
 			return;
 		}
