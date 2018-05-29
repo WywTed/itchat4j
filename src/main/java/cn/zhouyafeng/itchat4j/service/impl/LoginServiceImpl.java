@@ -96,11 +96,11 @@ public class LoginServiceImpl implements ILoginService {
 					break;
 				}
 				if (ResultEnum.WAIT_CONFIRM.getCode().equals(status)) {
-					LOG.info("请点击微信确认按钮，进行登陆");
+					log.info("请点击微信确认按钮，进行登陆");
 				}
 
 			} catch (Exception e) {
-				LOG.error("微信登陆异常！", e);
+				log.error("微信登陆异常！", e);
 			}
 		}
 		return isLogin;
@@ -257,7 +257,6 @@ public class LoginServiceImpl implements ILoginService {
 				while (core.isAlive()) {
 					try {
 						Map<String, String> resultMap = syncCheck();
-						LOG.info(JSONObject.toJSONString(resultMap));
 						String retcode = resultMap.get("retcode");
 						String selector = resultMap.get("selector");
 						if (retcode.equals(RetCodeEnum.UNKOWN.getCode())) {
